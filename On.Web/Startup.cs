@@ -8,12 +8,13 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using On.Core;
 using On.Infra;
-using On.Services;
+using On.Domain;
 using MediatR;
 using On.Application.CommandHandlers.Customers;
 using On.Application.Commands.Customers;
 using On.Domain.Events.Customers;
 using On.Application.EventHandlers.Customers;
+using On.Application;
 
 namespace On.Web
 {

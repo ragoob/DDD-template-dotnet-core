@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using On.Core;
 
-namespace On.Services
+namespace On.Application
 {
     public class TestableLogger : ILoggingService
     {

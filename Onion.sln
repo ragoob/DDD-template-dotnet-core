@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "On.Core", "On.Core\On.Core.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "On.Infra", "On.Infra\On.Infra.csproj", "{68676C1F-8D93-4136-A47D-C1198B0B9DAE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "On.Domain", "On.Services\On.Domain.csproj", "{A99DA9AB-36B3-4C1C-9F45-D28DD5978E2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "On.Domain", "On.Domain\On.Domain.csproj", "{A99DA9AB-36B3-4C1C-9F45-D28DD5978E2F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "On.Web", "On.Web\On.Web.csproj", "{2694F358-6734-4E12-BA2B-6899BFE35409}"
 EndProject
