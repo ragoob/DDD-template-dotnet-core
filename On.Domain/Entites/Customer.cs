@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 namespace On.Domain.Entites
 {
+    public record CustomerAddress(string Street, string City, string State, string Country, string Zipcode);
+
     public class Customer: BaseEntity
     {
         private List<CustomerPhoto> _photos = new List<CustomerPhoto>();
