@@ -1,4 +1,5 @@
-﻿using On.Core.Entites;
+﻿using On.Core;
+using On.Core.Entites;
 using On.Domain.Events.Customers;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ namespace On.Domain.Entites
 {
     public record CustomerAddress(string Street, string City, string State, string Country, string Zipcode);
 
-    public class Customer: BaseEntity<Guid>
+    public class Customer: BaseEntity<Guid>, IDomainEventEntity
     {
         private readonly List<CustomerPhoto> _photos = new List<CustomerPhoto>();
         private Customer()

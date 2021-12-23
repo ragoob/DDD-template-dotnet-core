@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace On.Core.Entites
 {
-    public abstract class BaseEntity<TIdentity>
+    public abstract class BaseEntity<TIdentity>: IDomainEventEntity
     {
       public TIdentity Id { get; set; }
 
-      private readonly List<IDomainEvent> _domainEvents = new List<IDomainEvent>();
-      public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents;
-       protected void AddDomainEvent(IDomainEvent domainEvent)
+        private List<IDomainEvent> _domainEvents = new List<IDomainEvent>();
+        public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents.AsReadOnly();
+        protected void AddDomainEvent(IDomainEvent domainEvent)
         {
             _domainEvents.Add(domainEvent);
         }
