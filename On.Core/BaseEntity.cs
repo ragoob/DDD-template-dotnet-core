@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace On.Core.Entites
 {
-    public abstract class BaseEntity
+    public abstract class BaseEntity<TIdentity>
     {
-      public Guid Id { get; set; }
+      public TIdentity Id { get; set; }
 
       private readonly List<IDomainEvent> _domainEvents = new List<IDomainEvent>();
       public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents;

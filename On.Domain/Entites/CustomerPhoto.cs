@@ -1,16 +1,24 @@
-﻿
-
-using On.Core;
-using System;
-
+﻿using System;
 namespace On.Domain.Entites
 {
     public class CustomerPhoto
     {
-        public Guid Id { get; set; }
-        public string PathUrl { get; set; }
+        private CustomerPhoto()
+        {
 
-        public string Alt { get; set; }
+        }
+
+        public CustomerPhoto(string pathUrl,string alt)
+        {
+            this.PathUrl = pathUrl;
+            this.Alt = alt;
+        }
+
+     
+        public Guid Id { get; private set; }
+        public string PathUrl { get; private set; }
+
+        public string Alt { get; private set; }
 
     
     }

@@ -42,7 +42,7 @@ namespace On.Infra.EntitiesConfigurations
                  .HasDefaultValue("");
               });
 
-            builder.OwnsMany(c => c.customerPhotos, cfg =>
+            builder.OwnsMany(c => c.CustomerPhotos, cfg =>
              {
                  cfg.Property(c => c.Id)
                  .HasColumnName("id")
@@ -54,8 +54,14 @@ namespace On.Infra.EntitiesConfigurations
 
                  cfg.Property(c => c.Alt)
                  .HasColumnName("alt");
-      
+
              });
+
+            builder.Metadata.FindNavigation(nameof(Customer.CustomerPhotos))
+                .SetField("_photos");
+
+
+
         }
     }
 

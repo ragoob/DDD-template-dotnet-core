@@ -23,7 +23,10 @@ namespace On.Application.CommandHandlers.Customers
         {
             var customer = await _customerRepository.GetAsync(request.Id);
             customer.updateCustomer(request.Name);
-            customer.ModifyAddress(new CustomerAddress(request.Street, request.City, request.State, request.Country, request.ZipCode));
+            customer.ModifyAddress(new CustomerAddress(request.Street, request.City, 
+                request.State, request.Country, request.ZipCode));
+            request.Photoes.ForEach(p => customer.RemoveCustomerPhoto(customer.Id));
+            request.Photoes.ForEach(p => customer.AddCustomerPhoto(p.pathUrl, p.alt));
             await _unitOfWork.CommitAsync();
             return true;
         }

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using On.Core.Entites;
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,12 +26,12 @@ namespace On.Infra
 
         private async Task DispatchDomainEventAsync(ChangeTracker changeTracker)
         {
-           var events =  changeTracker.Entries<BaseEntity>()
+           var events =  changeTracker.Entries<BaseEntity<Guid>>()
                .Select(x => x.Entity)
                .Where(x => x.DomainEvents.Any())
                .SelectMany(e => e.DomainEvents)
                .ToList();
-            changeTracker.Entries<BaseEntity>()
+            changeTracker.Entries<BaseEntity<Guid>>()
              .Select(x => x.Entity).ToList()
              .ForEach(e => e.ClearDomainEvents());
             foreach (var domainEvent in events)

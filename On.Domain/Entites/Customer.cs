@@ -6,9 +6,9 @@ namespace On.Domain.Entites
 {
     public record CustomerAddress(string Street, string City, string State, string Country, string Zipcode);
 
-    public class Customer: BaseEntity
+    public class Customer: BaseEntity<Guid>
     {
-        private List<CustomerPhoto> _photos = new List<CustomerPhoto>();
+        private readonly List<CustomerPhoto> _photos = new List<CustomerPhoto>();
         private Customer()
         {
             
@@ -30,21 +30,21 @@ namespace On.Domain.Entites
 
         public CustomerStatus CustomerStatus { get; private set; }
         public  CustomerAddress Address { get;  private set; }
-        public IReadOnlyCollection<CustomerPhoto> customerPhotos => _photos.AsReadOnly();
+        public IReadOnlyCollection<CustomerPhoto> CustomerPhotos => _photos;
 
-        public void AddCustomerPhoto(CustomerPhoto photo)
+        public void AddCustomerPhoto(string pathUrl, string alt)
         {
             // The customer profile should not have more than 5 photos 
             if (_photos.Count  == 5)
             {
                 throw new InvalidOperationException("You can not add more than 5 Photoes for the users");
             }
-            _photos.Add(photo);
+            _photos.Add(new CustomerPhoto(pathUrl,alt));
         }
 
-        public void RemoveCustomerPhoto(CustomerPhoto photo)
+        public void RemoveCustomerPhoto(Guid id)
         {
-            _photos.Remove(photo);
+            _photos.Remove(_photos.Find(c=> c.Id.Equals(id)));
         }
 
         public void ModifyAddress(CustomerAddress address)
@@ -52,7 +52,7 @@ namespace On.Domain.Entites
             Address = address;
         }
 
-         public void updateCustomer(string name)
+        public void updateCustomer(string name)
         {
             Name = name;
         }
@@ -62,7 +62,7 @@ namespace On.Domain.Entites
             CustomerStatus = CustomerStatus.Active;
             AddDomainEvent(new CustomerActivated()
             {
-                Id = this.Id
+                Id = Id
             });
         }
     }

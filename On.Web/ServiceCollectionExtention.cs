@@ -5,6 +5,11 @@ using On.Infra;
 using On.Infra.DataRepository;
 using On.Application.Mappers;
 using On.Domain.RepositoriesAbstraction;
+using MediatR;
+using On.Application.Commands.Customers;
+using On.Domain.Events.Customers;
+using On.Application.CommandHandlers.Customers;
+using On.Application.EventHandlers.Customers;
 
 namespace On.Web
 {
@@ -30,6 +35,16 @@ namespace On.Web
         public static void AddUnitOfWork(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<IUnitOfWork, UnitOfWork>();
+        }
+
+        public static void AddMediatR(this IServiceCollection serviceCollection)
+        {
+            serviceCollection.AddTransient<IRequestHandler<AddCustomerCommand, bool>, AddCustomerCommandHandler>();
+            serviceCollection.AddTransient<IRequestHandler<UpdateCustomerCommand, bool>, UpdateCustomerHandler>();
+            serviceCollection.AddTransient<IRequestHandler<DeleteCustomerCommand>, DeleteCustomerCommandHandler>();
+            serviceCollection.AddTransient<IRequestHandler<ActivateCustomerCommand, bool>, ActivateCustomerCommandHanlder>();
+            serviceCollection.AddTransient<INotificationHandler<CustomerActivated>, CustomerActivatedEventHandler>();
+            serviceCollection.AddMediatR(typeof(Startup));
         }
     }
 }

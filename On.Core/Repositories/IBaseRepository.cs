@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace On.Core.Repositories
 {
-    public interface IBaseRepository<TEntity> where TEntity : BaseEntity
+    public interface IBaseRepository<TEntity, TIdentity> where TEntity : BaseEntity<TIdentity>
     {
          Task<IEnumerable<TEntity>> GetAllAsync();
-        Task<TEntity> GetAsync(Guid id);
-        Task<TEntity> FristAsync(Guid id);
-        void Delete(Guid id);
+        Task<TEntity> GetAsync(TIdentity id);
+        Task<TEntity> FristAsync(TIdentity id);
+        void Delete(TIdentity id);
         void Add(TEntity entity);
 
     }

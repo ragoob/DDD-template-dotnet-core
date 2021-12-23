@@ -8,12 +8,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using On.Core;
 using On.Infra;
-using On.Domain;
-using MediatR;
-using On.Application.CommandHandlers.Customers;
-using On.Application.Commands.Customers;
-using On.Domain.Events.Customers;
-using On.Application.EventHandlers.Customers;
 using On.Application;
 
 namespace On.Web
@@ -44,12 +38,7 @@ namespace On.Web
             services.AddAutoMapper();
             services.AddRepositories();
             services.AddUnitOfWork();
-            services.AddTransient<IRequestHandler<AddCustomerCommand, bool>, AddCustomerCommandHandler>();
-            services.AddTransient<IRequestHandler<UpdateCustomerCommand, bool>, UpdateCustomerHandler>();
-            services.AddTransient<IRequestHandler<DeleteCustomerCommand>, DeleteCustomerCommandHandler>();
-            services.AddTransient<IRequestHandler<ActivateCustomerCommand,bool>, ActivateCustomerCommandHanlder>();
-            services.AddTransient<INotificationHandler<CustomerActivated>, CustomerActivatedEventHandler>();
-            services.AddMediatR(typeof(Startup));
+            services.AddMediatR();
 
             services.AddSwaggerGen(c =>
             {
