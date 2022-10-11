@@ -36,7 +36,7 @@ namespace On.Domain.Entites
         public void AddCustomerPhoto(string pathUrl, string alt)
         {
             // The customer profile should not have more than 5 photos 
-            if (_photos.Count  == 5)
+            if (_photos.Count  >= 5)
             {
                 throw new InvalidOperationException("You can not add more than 5 Photoes for the users");
             }
